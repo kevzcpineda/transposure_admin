@@ -67,6 +67,19 @@ class PersonalAccessTokens(models.Model):
         db_table = 'personal_access_tokens'
 
 
+class PredefinedRoutes(models.Model):
+    direction_from = models.TextField()
+    direction_to = models.TextField()
+    description = models.TextField()
+    is_active = models.IntegerField(db_column='is active')  # Field renamed to remove unsuitable characters.
+    date_modified = models.DateField()
+    date_added = models.DateField()
+
+    class Meta:
+        managed = False
+        db_table = 'predefined_routes'
+
+
 class Profiles(models.Model):
     id = models.BigAutoField(primary_key=True)
     fullname = models.CharField(max_length=255)
@@ -74,8 +87,7 @@ class Profiles(models.Model):
     pword = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     contact_no = models.BigIntegerField()
-    street = models.CharField(max_length=255)
-    barangay = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     user_type = models.CharField(max_length=255)
     is_active = models.IntegerField()

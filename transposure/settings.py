@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,6 +124,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR,'static')
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -139,12 +144,13 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Trasnposure",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-
+    "site_logo": "transposure_logo.png",
+    "login_logo": "transposure_logo.png",
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": None,
+    # "login_logo": None,
 
     # Logo to use for login form in dark themes (defaults to login_logo)
-    "login_logo_dark": None,
+    # "login_logo_dark": None,
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
@@ -153,18 +159,18 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the library",
+    "welcome_sign": "Trasnposure Admin",
 
     # Copyright on the footer
-    "copyright": "Acme Library Ltd",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
-    "search_model": ["auth.User", "auth.Group"],
+    
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": None,
-
+    "hide_models": ['auth.user','auth.group'],
+    "hide_apps": ['auth.user'],
     ############
     # Top Menu #
     ############
